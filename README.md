@@ -67,6 +67,14 @@ networks:
 volumes:
   mysql_data:
 ```
+note: my system already has docker enabled inside of my configuration.nix file via 
+```
+virtualisation.docker.enable = true;
+```
+  Docker also reads and processes standard `docker-compose.yml` files natively.
+  
+###  Run the Compose file
+Navigate to the folder containing the `docker-compose.yml` file in the terminal and start the containers:
 
 ### Explanation:
 - **nginx**: Runs an Nginx container and serves PHP from the `php-fpm` service.
