@@ -8,17 +8,17 @@ sudo systemctl status docker
 ```
 
 ### 2. **Create a Project Directory**
-You’ll need a directory to hold your Docker setup and project files. Open your terminal (Command Prompt, PowerShell, or Git Bash) and create a new directory for your project:
+You’ll need a directory to hold the Docker setup and project files. Open up terminal (konsole, PowerShell, or Git Bash) and create a new directory for the project:
 
 ```bash
-mkdir my_docker_project
-cd my_docker_project
+mkdir /home/reb/Documents/Code/DockerWebserverZBC
+cd /home/reb/Documents/Code/DockerWebserverZBC
 ```
 
 ### 3. **Create `docker-compose.yml`**
-This file will define your Nginx server, PHP service, and MySQL database. Inside your `my_docker_project` directory, create a file named `docker-compose.yml`.
+This file will define the Nginx server, PHP service, and MySQL database. Inside  `/home/reb/Documents/Code/DockerWebserverZBC` directory, create a file named `docker-compose.yml`.
 
-Here’s a basic configuration for your setup:
+Here’s a basic configuration for the setup:
 
 ```yaml
 version: '3.8'
