@@ -205,3 +205,84 @@ This will stop and remove the containers, but the volumes (like the MySQL data) 
 7. Test the web server on `localhost:8080`.
 8. Connect to MySQL via any MySQL client.
 9. Stop the services with `docker-compose down`.
+
+# Understand & Install
+Hvad er et RDBMS, og hvordan etablerer jeg det?
+
+## Launch the database server
+
+Your teacher has handed over the Docker setup you need (I followed his GitHUb tutorial for the Docker setup for the assigment).
+
+Start the MariaDB server.
+Then check in Docker Desktop that the container is running. 
+Note:  instead of docker desktop, just do:
+```
+docker ps -a
+```
+
+Find:
+
+    Name of the container
+
+    Which port number MariaDB uses
+
+    What image the container uses
+
+Based on the output from my `docker ps -a` command:
+
+* **Name of the container:** `mysql_container`
+* **Port number MariaDB/MySQL uses:** Inside the container, it uses standard port **`3306`** (mapped to host port **`3307`** on my machine)
+* **Image the container uses:** `mysql:8.0`
+
+MySQL and MariaDB are fully protocol-compatible and use the exact same default port (**`3306`**).
+
+In my setup, the container is running the official **`mysql:8.0`** image, but from the application or database client's perspective, it speaks the exact same database protocol as MariaDB.
+## Connect with MySQL Workbench
+
+Create a new connection in MySQL Workbench.
+
+Use the information your teacher has given you.
+
+When the connection works, drive:
+
+SELECT VERSION();
+
+Examination
+
+Which MariaDB version do you run?
+3. Examine the server
+
+Drive:
+
+SHOW DATABASES;
+
+What databases are on the server?
+
+Then try:
+
+SELECT CURRENT_USER();
+
+Which user are you logged in as?
+4. Think about the architecture
+
+Answer the following:
+
+    Is MySQL Workbench a database server?
+
+    Is MySQL Workbench a database?
+
+    Where does MariaDB run?
+
+    What is the workbench connected to?
+
+    What does Workbench send to MariaDB?
+
+Then draw even a small figure that shows:
+
+Workbench → MariaDB → Database
+When you're done
+
+You need to be able to explain the difference between:
+
+    Database client, RDBMS/database server and database.
+
