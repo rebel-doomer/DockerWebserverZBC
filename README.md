@@ -75,12 +75,17 @@ virtualisation.docker.enable = true;
   
 ###  Run the Compose file
 Navigate to the folder containing the `docker-compose.yml` file in the terminal and start the containers:
+```
+docker compose up
+```
+
+Note: run `docker compose down` to turn off all containers
 
 ### Explanation:
 - **nginx**: Runs an Nginx container and serves PHP from the `php-fpm` service.
 - **php**: Runs PHP-FPM (FastCGI Process Manager), which allows Nginx to serve PHP files.
 - **mysql**: Runs a MySQL container with environment variables to set the root password, a database, and user credentials.
-- **volumes**: These map directories on your host machine to directories inside the container. This allows you to work with files on your host machine and have them available to Nginx and PHP.
+- **volumes**: These map directories on your host machine to directories inside the container. This allows you to work with files on your host machine and have them available to Nginx and PHP. Note: save "states" can work here on this volume, otherwise my default, docker containers when restarted, have no saved files.
 
 ### 4. **Create Nginx Configuration**
 You need to create an Nginx configuration file to tell Nginx how to handle PHP requests. Inside your project directory, create a folder called `nginx` and then a file named `nginx.conf`.
@@ -147,7 +152,12 @@ Now that everything is set up, it’s time to start the containers using Docker 
 ```bash
 docker-compose up -d
 ```
-
+Note:
+The program `docker-compose` is not in your PATH by default. You can make it available in an
+ephemeral shell by typing:
+ ```
+ nix-shell -p docker-compose
+ ```
 This will:
 - Pull the necessary images (`nginx`, `php-fpm`, and `mysql`).
 - Create and start the containers.
@@ -170,6 +180,11 @@ To connect to MySQL, you can use any MySQL client (e.g., MySQL Workbench, phpMyA
 - **User**: `user`
 - **Password**: `user_password`
 - **Database**: `my_database`
+
+Note: on terminal, type the following:
+```
+docker exec -it mysql_container mysql -u user -puser_password my_database
+```
 
 ### 9. **Stop the Services**
 When you’re done and want to stop the containers, simply run:
