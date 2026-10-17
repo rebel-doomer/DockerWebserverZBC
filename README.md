@@ -237,52 +237,77 @@ Based on the output from my `docker ps -a` command:
 MySQL and MariaDB are fully protocol-compatible and use the exact same default port (**`3306`**).
 
 In my setup, the container is running the official **`mysql:8.0`** image, but from the application or database client's perspective, it speaks the exact same database protocol as MariaDB.
-## Connect with MySQL Workbench
 
+## Connect with MySQL Workbench
+Note: in my use case scenario, i am using DataGrip by Jetbrains to do this part of the assigment.
 Create a new connection in MySQL Workbench.
 
 Use the information your teacher has given you.
 
 When the connection works, drive:
 
-SELECT VERSION();
+`SELECT VERSION();`
 
-Examination
+### Examination
 
 Which MariaDB version do you run?
-3. Examine the server
+`8.0.46`
+
+### 3. Examine the server
 
 Drive:
 
-SHOW DATABASES;
+`SHOW DATABASES;`
 
 What databases are on the server?
+```
+1 | information_schema
+2 | my_database
+3 | performance.schema
+```
 
 Then try:
 
-SELECT CURRENT_USER();
+`SELECT CURRENT_USER();`
 
 Which user are you logged in as?
-4. Think about the architecture
+`user@%`
+
+### 4. Think about the architecture
 
 Answer the following:
 
-    Is MySQL Workbench a database server?
+    1. Is MySQL Workbench a database server?
 
-    Is MySQL Workbench a database?
+    2. Is MySQL Workbench a database?
 
-    Where does MariaDB run?
+    3. Where does MariaDB run?
 
-    What is the workbench connected to?
+    4. What is the workbench connected to?
 
-    What does Workbench send to MariaDB?
+    5. What does Workbench send to MariaDB?
+1. no
+2. no
+3. MariaDB runs as a background service on a server (can be setup in systemd to auto run at PC startup/boot, same way as you would run, for example, `watchdog` or a firewall in the background, same as daemons that run invisibly in the background),  your local machine, or inside a container, such as when using Docker)
+4.  The workbench connects to a running database server instance (such as a MySQL or MariaDB database server running locally, remotely, or inside a Docker container).
+5.  MySQL Workbench sends SQL queries, commands, and statements (such as SELECT, INSERT, UPDATE, or SHOW commands) over the network connection to the database server.
 
 Then draw even a small figure that shows:
 
 Workbench → MariaDB → Database
-When you're done
+When you're done:
+![DataGrip to MySQL architecture](datagrip_mysql_architecture.png)
+
+DataGrip is the client, the MySQL server runs in the Docker container, and my_database is the data that server manages.
+
+Since i am using DataGrip, the connection settings are slightly different from the original assigment by the teacher, which says port 3306. In my `docker-compose.yml` the mapping is `"3307:3306"`, so from my machine i connect to `localhost` on port **3307**. Port 3306 is the port inside the container, which only other containers on `mynetwork` use. Also, the container runs `mysql:8.0`, not MariaDB. The two are protocol-compatible, so the client doesn't care, but the version i am running is MySQL 8.0.46.
+
+
 
 You need to be able to explain the difference between:
 
     Database client, RDBMS/database server and database.
 
+- **Database client**: the program you type queries into (DataGrip, Workbench). It holds no data itself. It only sends SQL and displays the results.
+- **RDBMS / database server**: the running software (MySQL here) that accepts connections, parses and executes SQL, and manages access and storage. It's the process listening on port 3307.
+- **Database**: the organized collection of data, here `my_database`. It's what the server stores and manages, and it lives in the `mysql_data` volume.
