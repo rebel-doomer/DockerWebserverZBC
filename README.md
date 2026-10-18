@@ -312,7 +312,15 @@ You need to be able to explain the difference between:
 - **RDBMS / database server**: the running software (MySQL here) that accepts connections, parses and executes SQL, and manages access and storage. It's the process listening on port 3307.
 - **Database**: the organized collection of data, here `my_database`. It's what the server stores and manages, and it lives in the `mysql_data` volume.
 
-# Task 2 – Examine the database server
+# Databaseserverteknologi
+# Understand & Install
+## Task 1 – Your first database server
+Purpose
+
+In this task, you need to establish a database server and connect to it with a database tool.
+Note: the sum of the entire task has already been completed in the first half of this README.md file, thus, it shall be skipped due to unnecessary redundancy.
+
+## Task 2 – Examine the database server
 Purpose
 
 A RDBMS should not only know your data.  It also needs to know how the database is built. This information is called metadata.
@@ -356,15 +364,15 @@ Select a database that already exists on your server.
 
 Drive:
 
-USE <database>;
+`USE <database>;`
 
 and then:
 
-SHOW TABLES;
+`SHOW TABLES;`
 
 Examine at least one of the tables with:
 
-DESCRIBE <table>;
+`DESCRIBE <table>;`
          
 Note: made my own for better testing purposes:
 ```
@@ -462,7 +470,7 @@ Here are three different things MariaDB can tell you using those commands:
 * **Why an RDBMS needs metadata:** An RDBMS needs metadata to know how the database is built. Without it, the database engine wouldn't know how columns are typed, which fields are primary keys, how tables relate to each other, or how to properly store, validate, and retrieve your queries.
 * 
 
-# Task 3 – Build a database
+## Task 3 – Build a database
 Purpose
 
 Now you have to create a database and some database objects yourself.
