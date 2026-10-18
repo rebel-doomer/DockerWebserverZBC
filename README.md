@@ -368,6 +368,24 @@ DESCRIBE <table>;
          
 Note: made my own for better testing purposes:
 ```
+SELECT VERSION();
+SHOW DATABASES;
+SELECT CURRENT_USER();
+SHOW DATABASES;
+
+SELECT
+    table_schema,
+    table_name
+FROM information_schema.tables;
+
+USE my_database;
+SHOW TABLES;
+CREATE TABLE users (
+                       id INT AUTO_INCREMENT PRIMARY KEY,
+                       name VARCHAR(50)
+);
+
+DESCRIBE users;
 ```
 Find out:
 
