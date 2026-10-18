@@ -568,8 +568,6 @@ Create at least:
 
     4 registrations
 
-6. Examine what you have built
-
 Use SQL to examine the database.
 
 You must be able to show:
