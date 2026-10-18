@@ -568,6 +568,50 @@ Create at least:
 
     4 registrations
 
+Here is the code in summary:
+```MySQL
+CREATE DATABASE IF NOT EXISTS school;
+SHOW DATABASES;
+
+USE school;
+
+CREATE TABLE IF NOT EXISTS students (
+                                        id INT AUTO_INCREMENT PRIMARY KEY,
+                                        name VARCHAR(100) NOT NULL,
+                                        email VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS courses (
+                                       id INT AUTO_INCREMENT PRIMARY KEY,
+                                       title VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS enrollment (
+                                           student_id INT NOT NULL,
+                                           course_id INT NOT NULL,
+                                           PRIMARY KEY (student_id, course_id),
+                                           FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+                                           FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);
+
+USE school;
+
+INSERT INTO students (name, email) VALUES
+                                       ('Bob Dobbs', 'retard@hotmail.com'),
+                                       ('Edd Curtis', 'dumass@420blaze.it' ),
+                                       ('Charlie Manson', 'mrmanson@serialkillerdatingmail.com');
+
+INSERT INTO courses (title) VALUES
+                                ('Art Class'),
+                                ('Theology');
+
+INSERT INTO  enrollment (student_id, course_id) VALUES
+                                                    (1, 1),
+                                                    (1, 2),
+                                                    (2, 1),
+                                                    (3, 2);
+```
+
 Use SQL to examine the database.
 
 You must be able to show:
