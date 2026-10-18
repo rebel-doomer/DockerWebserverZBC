@@ -315,30 +315,27 @@ You need to be able to explain the difference between:
 # Task 2 – Examine the database server
 Purpose
 
-A RDBMS should not only know your data.
+A RDBMS should not only know your data.  It also needs to know how the database is built. This information is called metadata.
 
-It also needs to know how the database is built.
-
-This information is called metadata.
+Note: An RDBMS stands for Relational Database Management System. It is a software system used to store, manage, query, and retrieve structured data organized into tables (relations) with rows and columns.
+To touch on the quote, an RDBMS doesn't just hold raw data entries; it also stores the database schema (metadata, constraints, data types, and foreign key relationships) which defines how the database is structured and how different tables connect to one another. Examples include MySQL, MariaDB, PostgreSQL, and SQLite.
 
 In this task, you need to examine how MariaDB can tell you about its own structure.
+
 1. What databases are available?
 
 Drive:
-
-SHOW DATABASES;
+`SHOW DATABASES;`
 
 Find the database:
-
-information_schema
+`information_schema`
 
 Don't change anything in this database.
-
 It contains information about the databases.
+
 2. Find tables
 
 Drive:
-
 SELECT
 table_schema,
 table_name
@@ -349,11 +346,12 @@ Examine the result.
 You now get a list of tables that MariaDB knows.
 Questions
 
-What does the column tell table_schema?
+What does the column tell `table_schema`?
+What does the column tell `table_name`?
+* **`table_schema`**: Tells you the name of the database (or schema) that the table belongs to (such as `information_schema` or `performance_schema`).
+* **`table_name`**: Tells you the name of the specific data table itself within that database (such as `CHARACTER_SETS`, `COLUMNS`, or `TABLES`).
 
-What does the column tell table_name?
 3. Examine a specific database
-
 Select a database that already exists on your server.
 
 Drive:
@@ -367,7 +365,10 @@ SHOW TABLES;
 Examine at least one of the tables with:
 
 DESCRIBE <table>;
-
+         
+Note: made my own for better testing purposes:
+```
+```
 Find out:
 
     Which columns are available?
