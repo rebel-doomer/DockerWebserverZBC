@@ -474,16 +474,12 @@ Here are three different things MariaDB can tell you using those commands:
 Purpose
 
 Now you have to create a database and some database objects yourself.
-
 You don't have to build a big system. The purpose is to see the connection:
 
 RDBMS → database → tables → data
 1. Create the database
 
-Create a database called:
-
-school
-
+Create a database called: `school`
 Use SQL.
 
 Then check that the database exists.
@@ -500,6 +496,19 @@ The table shall contain at least:
 idmust be the primary key.
 
 Use appropriate data types.
+
+```MySQL
+CREATE DATABASE IF NOT EXISTS school;
+SHOW DATABASES;
+
+USE school;
+
+CREATE TABLE IF NOT EXISTS students (
+                                        id INT AUTO_INCREMENT PRIMARY KEY,
+                                        name VARCHAR(100) NOT NULL,
+                                        email VARCHAR(255) NOT NULL UNIQUE
+);
+```
 3. Create the table courses
 
 The table shall contain at least:
@@ -522,6 +531,33 @@ It shall contain at least:
     course ID
 
 Use foreign keys so that the database can control the relationships.
+
+```MySQL
+CREATE DATABASE IF NOT EXISTS school;
+SHOW DATABASES;
+
+USE school;
+
+CREATE TABLE IF NOT EXISTS students (
+                                        id INT AUTO_INCREMENT PRIMARY KEY,
+                                        name VARCHAR(100) NOT NULL,
+                                        email VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS courses (
+                                       id INT AUTO_INCREMENT PRIMARY KEY,
+                                       title VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS enrollment (
+                                           student_id INT NOT NULL,
+                                           course_id INT NOT NULL,
+                                           PRIMARY KEY (student_id, course_id),
+                                           FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+                                           FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);
+```
+
 5. Insert data
 
 Create at least:
