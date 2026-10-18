@@ -396,7 +396,14 @@ Find out:
     Is there a primary key?
 
     Are some columns NOT NULL?
+    
+Here are the direct answers based on the `users` table example:
 
+* **Which columns are available?** `id`, `name`
+* **What data types are used?** `int` (for id), `varchar(50)` (for name)
+* **Is there a primary key?** Yes (`id`)
+* **Are some columns NOT NULL?** Yes (`id` and `name` are required/NOT NULL)
+* 
 4. Metadata or data?
 
 Look at the following:
@@ -417,9 +424,14 @@ Primary Key: YES
 
 Which of the two describes datadata?
 
+* **The first one (`student` table with rows):** This is **data** (the actual records).
+* **The second one (`Kolonne: id`, `Type: INT`, etc.):** This is **metadata** (data *about* the data, describing its structure).
+
 Which is the type of metadata?
 
 In your own words, explain what metadata means.
+Metadata gives basic information to identify type of data, their IDs to identify with, etc. Metadata is essentially "data about data." It provides information that describes or gives context to other data without being the actual content itself.
+
 5. Examine MariaDB
 
 Find at least three different things that MariaDB can tell you about a database or its objects.
@@ -437,6 +449,18 @@ When you're done
 You must be able to explain:
 
     What metadata is and why a RDBMS needs metadata.
+
+Here are three different things MariaDB can tell you using those commands:
+
+1. **List all tables:** Using `SHOW TABLES;` tells you the names of all the data tables stored inside your current database.
+2. **Describe table structure:** Using `DESCRIBE <table_name>;` tells you the metadata of a specific table, including its available columns, data types, primary keys, and null constraints.
+3. **Inspect global database metadata:** Querying `information_schema.tables` tells you schema-level information across the entire server, such as which database a table belongs to and its system details.
+
+### Metadata & RDBMS Explanation
+
+* **What metadata is:** Metadata is "data about data." It describes the structure, rules, data types, and relationships of your stored information rather than being the raw data records themselves.
+* **Why an RDBMS needs metadata:** An RDBMS needs metadata to know how the database is built. Without it, the database engine wouldn't know how columns are typed, which fields are primary keys, how tables relate to each other, or how to properly store, validate, and retrieve your queries.
+* 
 
 # Task 3 – Build a database
 Purpose
